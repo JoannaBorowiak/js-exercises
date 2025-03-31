@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="button1">double click me</button>
+    <script>
+        //Podpiąć callback pod button 1 ze zdarzeniem dblclick
+        //Wyświetlić informację o podówjnym kliknięciu
+
+        function dblclicked(event){
+            console.log("Przycisk został podójnie kliknięty!")
+            //event to obiekt zdarzenia, informacje o zdarzeniu
+            console.log(event);
+            console.log(event.target);
+            console.log(event.target.id);
+        }
+        /*document.getElementById("button1").addEventListener("dblclick", function(){
+            console.log("Przycisk został podójnie kliknięty!");
+        })*/
+
+        //Wersja druga
+        document.getElementById("button1").addEventListener("dblclick", dblclicked);
+    </script>
+</body>
+</html>
