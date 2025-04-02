@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //number - typ wartości, zmiennoprzecinkowy, 64 bitowy
+        //number pozwala na zapis liczb całkowitych oraz dziesiętnych
+
+        let a = 1;
+        let b = 1.456; //liczba dziesiętna, zmiennoprzecinkowa
+        let c = 0xf;
+        const d = .45; //to samo co 0.45
+
+        //maksymalna bezpieczna liczba całkowita dodatnia i ujemna
+        console.log(Number.MAX_SAFE_INTEGER); //max liczba całkowita, którą możemy zapisać
+        console.log(Number.MIN_SAFE_INTEGER); 
+
+        console.log(Number.isSafeInteger(9007199254740991)); //true
+
+        // NaN - Not a Number - specjalna wartość, która określa, że coś nie jest liczbą
+        const someNaN = 0/0;
+        console.log(someNaN);//NaN
+        console.log(Math.sqrt(-1)); //NaN
+
+        //parseInt() - konwersja łańcucha znaków na liczbę
+        let someNum = parseInt("12.345");
+        console.log(someNum);
+        console.log(parseInt("tekst 12.345"));
+
+        console.log(isNaN(0/0)); // true, bo 0/0 daje NaN
+        console.log(Number.isNaN(67)); //false
+
+        //infinity, - infinity
+        let infinityPositive = 1/0; //infinity
+        console.log(Number.isFinite(infinityPositive) == false); //true
+        console.log(Number.isFinite(10)); //treu
+
+        console.log( Number.POSITIVE_INFINITY); //infinity
+        console.log( Number.NEGATIVE_INFINITY);
+
+        //parse float
+        console.log( Number.parseFloat("12.678teskt")); //12.678
+
+        //isInteger
+        console.log(Number.isInteger(12/6)); true
+        console.log(Number.isInteger(10/3)); false
+
+        //toFixed(n) - ucina końcówkę liczby do n cyfr
+        console.log(23.456.toFixed(2)); //23.46
+        console.log(23.456.toFixed(3)); //23.456
+        console.log(23.456.toFixed(4)); //23.4560
+
+        //zaokrąglanie liczb
+
+        console.log(Math.round(1.78)); //2
+        console.log(Math.round(1.48)); //1
+
+        //Math.floor() - zaokrągla do dołu
+        console.log(Math.floor(1.99));
+        console.log(Math.ceil(1.01));
+
+    </script>
+    
+</body>
+</html>
