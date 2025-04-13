@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // tablice - uporządkowana kolekcja elementów
+        // nie są typem, a obiektem
+        // mogą przechowywać dowolne typy: proste i złożone
+        // elementy są uporządkowane w postaci indeksów, każdy indeks
+        // to liczba całkowita, liczone są od 0
+
+        let a = []; //pusta tablica
+        let b = [22, "tekst", {a:1}, [5,8,8], function(){}, null];
+        console.log(b);
+        console.log(b[6]); //undefined
+        console.log(b[b.length-1]); // ostatni element to null
+        console.log(b[0]); // 22
+
+        b[2] = 99;
+        console.log(b[2]); // nadpisanie wartości 2-go indeksu
+        console.log(b);
+
+        let c = new Array(12, "test, 9");
+        console.log(c); // [12, 'test', 9]
+        let d = Array(1,2,3);
+        console.log(d);
+
+        let e = [];
+        e[0] = "test";
+        e[1] = "test1";
+        e[2] = "test3";
+        e[e.length] = "test4";
+        e.push("test5"); // umieszcza jako ostatni element
+        console.log(e);
+
+        let f = [0,1,2,3,4,5,6,7];
+        console.log(f);
+        f.length = 4;
+        console.log(f); // [0,1,2,3]
+
+        delete f[1];
+        console.log(f); // [0,empty,2,3]
+        console.log(f[1]); // undefined
+        // czy indeks istnieje w tablicy
+        console.log( 1 in f); //false, ponieważ indeks nie istnieje
+        console.log( 2 in f); //true
+
+        let g = Array(5).fill(7);
+        console.log(g); //[7,7,7,7,7]
+
+        let h = [99, 55, 45, "tekst"]
+
+        for (let i = 0; i < h.length; i++){
+            console.log(h[i]);
+        }
+
+        let arr1 = ["el1", "el2", "el3"];
+
+        arr1.forEach(function(item, index, array){
+            console.log(item, index);
+        });
+
+        // łączenie tablic
+        let arr2 = arr1.concat( [1,2,3]);
+        console.log(arr2);
+        let arr3 = arr1.concat( [5,6], [10,22,34]);
+        console.log(arr3);
+
+        let strFromArr = arr1.join();
+        console.log(strFromArr); // "el1,el2,el3"
+
+        let strFromArr2 = arr1.join("|");
+        console.log(strFromArr2); // "ell1|e;2|el3"
+
+        let arr4 = [1,2,3,4];
+        arr4.reverse(); // zmienia oryginalną tablicę
+        console.log(arr4); // [4,3,2,1]
+
+        arr4.push(99);
+        console.log(arr4); //[4,3,2,1,99]
+
+        let arrE1 = arr4.pop();
+        console.log(arrE1); // pobiera i kasuje ostani element z tablicy
+        console.log(arr4); //[4,3,2,1]
+
+        let cars = ["jeep", "fiat"];
+        cars.unshift("dodge", "citroen");
+        console.log(cars); //['dodge, 'citroen', 'jeep', 'fiat']
+        let car = cars.shift();
+        console.log(car); // dodge
+
+        let arr5 = ["Ola", "Ania", "Rafał", "Karol"];
+        arr5.splice(2, 0, "Olek"); // (który indeks, ile chcemy usunąć, co wstawiamy)
+        console.log(arr5); // ['Ola', 'Ania', 'Olek', 'Rafał', 'Karol']
+        
+        let arr6 = ["Ola", "Ania", "Rafał", "Karol"];
+        arr6.splice(2, 1, "Olek");
+        console.log(arr6); // ['Ola', 'Ania', 'Olek', 'Karol']
+
+        arr6.splice(1, 2, "Gucio", "Joanna", "Joasia");
+        console.log(arr6); //['Ola', 'Gucio', 'Joanna', 'Joasia', 'Karol']
+
+        let indexJoanna = arr6.indexOf("Joanna");
+        console.log(indexJoanna); //2
+
+        arr6.unshift("Joanna");
+        console.log(arr6);
+        let indexJoanna2 = arr6.lastIndexOf("Joanna");
+        console.log(indexJoanna2); //3
+        let indexJoanna3 = arr6.lastIndexOf("Joanna", 2);
+        console.log(indexJoanna3); // 0
+
+        let sortedarr = arr6.sort();
+        console.log(sortedarr); // ['Gucio', 'Joanna', 'Joanna', "Joasia", 'Karol', 'Ola']
+
+        let reversed = arr6.sort().reverse();
+        console.log(reversed); // ['Ola', 'Karol', "Joasia", 'Joanna', 'Joanna', 'Gucio' ]
+
+        let arr7 = [44, 55, 111, 99, 321];
+        let sortedArr7 = arr7.sort();
+        console.log(sortedArr7); // sortowanie alfabetyczne: 111, 321, 44, 55, 99 - źle 
+
+        function sortNumbers(a,b){
+            //return 0 jeśli są równe a i b
+            //wartość większą od zera jeśli a>b
+            //wartość mniejszą od zera jeśli a<b
+            //a = 5 b = 7
+            // return a-b = 5 - 7 = -2
+            return a-b;
+        }
+
+        let sortedArr7ok = arr7.sort(sortNumbers);
+        console.log(sortedArr7ok); // [44, 55, 99, 111, 321]
+
+        // wywoływanie metody na każdym elemencie tablicy
+        let arr8 = sortedArr7ok.map(function(value, index, arr){
+            return value * 2;
+        });
+        console.log(arr8); //[88, 110, 198, 222, 642] zwraca nową tablicę
+
+        // Filtruje tablicę i zwraca przefiltrowaną tablicę
+        let arr9 = sortedArr7ok.filter(function(value){
+            return value > 100;
+        })
+        console.log(arr9); //[111, 321]
+
+        // sumowanie tablicy - accumulator to wynik poprzednich elementów
+        // 1, 2, 3, 4
+        let sum = arr8.reduce(function(accumulator, currentValue, index){
+            return accumulator + currentValue;
+        });
+        console.log(sum); //1260
+
+        // wyświetla czy wszystkie elementy tablicy przeszły dany test
+        let result = [1,2,3,4].every(function(value, index, arr){
+            return value > 0;
+        });
+        console.log(result); //true
+
+        result = [1,-2,3,4].every(function(value, index, arr){
+            return value > 0;
+        });
+        console.log(result); // false
+
+        const objects = [{id:0}, {id:1}, {id:2}, {id:3, name: "Ania"}];
+
+        // find szuka obiekt ze względu na id
+        let obj = objects.find(function(o){
+            return o.id == 2;
+        });
+        console.log(obj); // {id: 2}
+
+        //zwraca numer indeksu
+        let objIndex = objects.findIndex(function(o){
+            return o.id == 1;
+        });
+        console.log(objIndex); // index 1
+
+        // sprawdzanie czy tablica zawiera
+        const fruits = ["jabłko", "malina", "cytryna"];
+        console.log(fruits.includes("malina")); //true
+        console.log(fruits.includes("banan")); //false
+        </script>
+</body>
+</html>

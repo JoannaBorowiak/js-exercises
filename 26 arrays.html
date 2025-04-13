@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // tablice - uporządkowana kolekcja elementów
+        // nie są typem, a obiektem
+        // mogą przechowywać dowolne typy: proste i złożone
+        // elementy są uporządkowane w postaci indeksów, każdy indeks
+        // to liczba całkowita, liczone są od 0
+
+        let a = []; //pusta tablica
+        let b = [22, "tekst", {a:1}, [5,8,8], function(){}, null];
+        console.log(b);
+        console.log(b[6]); //undefined
+        console.log(b[b.length-1]); // ostatni element to null
+        console.log(b[0]); // 22
+
+        b[2] = 99;
+        console.log(b[2]); // nadpisanie wartości 2-go indeksu
+        console.log(b);
+
+        let c = new Array(12, "test, 9");
+        console.log(c); // [12, 'test', 9]
+        let d = Array(1,2,3);
+        console.log(d);
+
+        let e = [];
+        e[0] = "test";
+        e[1] = "test1";
+        e[2] = "test3";
+        e[e.length] = "test4";
+        e.push("test5"); // umieszcza jako ostatni element
+        console.log(e);
+
+        let f = [0,1,2,3,4,5,6,7];
+        console.log(f);
+        f.length = 4;
+        console.log(f); // [0,1,2,3]
+
+        delete f[1];
+        console.log(f); // [0,empty,2,3]
+        console.log(f[1]); // undefined
+        // czy indeks istnieje w tablicy
+        console.log( 1 in f); //false, ponieważ indeks nie istnieje
+        console.log( 2 in f); //true
+
+        let g = Array(5).fill(7);
+        console.log(g); //[7,7,7,7,7]
+
+        let h = [99, 55, 45, "tekst"]
+
+        for (let i = 0; i < h.length; i++){
+            console.log(h[i]);
+        }
+
+        let arr1 = ["el1", "el2", "el3"];
+
+        arr1.forEach(function(item, index, array){
+            console.log(item, index);
+        });
+
+        // łączenie tablic
+        let arr2 = arr1.concat( [1,2,3]);
+        console.log(arr2);
+        let arr3 = arr1.concat( [5,6], [10,22,34]);
+        console.log(arr3);
+
+        let strFromArr = arr1.join();
+        console.log(strFromArr); // "el1,el2,el3"
+
+        let strFromArr2 = arr1.join("|");
+        console.log(strFromArr2); // "ell1|e;2|el3"
+
+        let arr4 = [1,2,3,4];
+        arr4.reverse(); // zmienia oryginalną tablicę
+        console.log(arr4); // [4,3,2,1]
+
+        arr4.push(99);
+        console.log(arr4); //[4,3,2,1,99]
+
+        let arrE1 = arr4.pop();
+        console.log(arrE1); // pobiera i kasuje ostani element z tablicy
+        console.log(arr4); //[4,3,2,1]
+    </script>
+</body>
+</html>
