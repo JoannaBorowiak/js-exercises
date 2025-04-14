@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var data = 5;   // deklaracja z var to ten sposób istnieje od zawsze
+                        // zmienne var mają zakres funkcyjny!
+
+        if (1 ==1){
+            var text = "txt"; // var ma zakres funkcyjny, nie blokowy
+        }
+        
+        console.log(text); // txt z var widoczne poza blokiem!
+
+        for(var i = 0; i<3; i++){
+            console.log(i);
+        }
+
+        console.log("i: ", i);
+
+        function foo(){
+            var fooTest = 100;
+        }
+
+        foo();
+        //console.log(fooTest);   // fooTest is not defined
+                                // var ma zakres funkcyjny czyli ogranicza się do bloku kodu funkcji
+                                // zmienna var nie jest widoczna poza funkcją
+
+        let info = 10;  // dodany w ES6 czyli EcmaScript2015
+                        // zakres blokowy
+
+        if (1 ==1){
+            let someText = "txt"; // var ma zakres funkcyjny, nie blokowy
+        }
+
+        //console.log(someText); // ReferenceError: someText is not defined
+
+        for(let j = 0; i<3; j++){
+            console.log(j);
+        }
+
+        //console.log("j: ", j); // ReferenceError: j is not defined
+
+        function bar(){
+            let someBar = 89;
+        }
+
+        bar();
+        //cosole.log(someBar); // ReferenceError: cosole is not defined
+
+        const element = 25; // dodany w ES6 czyli EcmaScript2015
+                            // stała, nie możemy zmieniać
+                            // zakres blokowy tak samo jak let
+    </script>
+</body>
+</html>
