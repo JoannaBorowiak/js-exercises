@@ -16,7 +16,7 @@
             justify-content: center;
             width: 100vw;
             height: 100vh;
-            background: white;
+            background: rgb(134, 162, 194);
             overflow: hidden;
         }
 
@@ -26,48 +26,81 @@
         }
 
         #content-img {
-            height: 40vh;
+            margin: 20px;
+            height: 60vh;
         }
 
         #fact {
-            padding: 10px;
+            padding: 10px 20px;
+            width: 80vw;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
             font-size: 1.3rem;
+            border-width: 2px;
+            border-style: solid;
+            border-color: black;
+            border-radius: 10px;
+            background: rgba(204, 207, 213, 0.351);
         }
-
-
     </style>
 </head>
 <body>
     <div class="container">
-        <img src="https://images.dog.ceo/breeds/mountain-swiss/n02107574_854.jpg" id="content-img">
-        <div id="fact">Test</div>
+        <img src="" id="content-img">
+        <div id="fact"></div>
     </div>
     <script>
         window.onload = function() {
             getContent();
+
+            document.addEventListener("keyup", function(event) {
+                if (event.code == "Space") {
+                    getContent();
+                }
+            });
         }
 
-        async function getContent() {
-            const apiFactsUrl = "https://dogapi.dog/api/facts";
-            const data = await fetch(apiUrl);
-            let dataJson = await data.json();
+        function getContent() {
+            getFact();
+            getImage();
+        }
+        
+        async function getFact() {
+            const apiFactUrl = "https://dogapi.dog/api/facts";
+            const dataFact = await fetch(apiFactUrl);
+            let dataFactJson = await dataFact.json();
             
-
-            processData(dataJson);
+            processDataFact(dataFactJson);
         }
         
         async function getImage() {
             const apiImgUrl = "https://dog.ceo/api/breeds/image/random";
             const dataImg = await fetch(apiImgUrl);
-            let imgJson = await dataImg.json();
-        }
-        
+            let dataImgJson = await dataImg.json();
 
-        function processData(data) {
+            processDataImg(dataImgJson);
+        }
+
+        function processDataFact(data) {
+            const fact = data.facts;
+
+            updateDOMFact(fact);
+        }
+
+        function processDataImg(data) {
             console.log(data);
-            const imgSrc = data.image;
-            const fact = data.fact;
+            const imgSrc = data.message;
+
+            updateDOMImg(imgSrc);
+        }
+
+        function updateDOMFact(fact) {
+            const factDiv = document.getElementById("fact");
+            factDiv.innerHTML = `"${fact}"`;
+        }
+
+        function updateDOMImg(imgSrc) {
+            const img = document.getElementById("content-img");
+            img.src = imgSrc;
         }
     </script>
 </body>
